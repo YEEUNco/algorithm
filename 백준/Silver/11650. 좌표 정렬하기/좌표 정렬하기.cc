@@ -1,31 +1,35 @@
 #include <iostream>
 #include <vector>
-#include <utility>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
-
-bool func(pair<int,int> a, pair<int,int> b){
-    if(a.first == b.first) {
-        return(a.second < b.second);
-    } 
-    else return (a.first < b.first);
+bool func(pair<int, int> a, pair<int, int> b){
+    if(a.first==b.first){
+        return a.second < b.second;
+    }
+    return a.first < b.first;
 }
 
-int main(void){
-    int k;
-    cin >> k; 
 
-    vector<pair<int, int> > v;
-    pair<int, int> myPair;
-    
-    for(int i=0; i<k; i++){
-        int num1, num2;
-        cin >> num1 >> num2;
-        myPair = {num1, num2};
-        v.push_back(myPair);
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+
+    vector<pair<int, int>> book;
+    pair<int, int> mypair;
+    for(int i=0; i<n; i++){
+        int x, y;
+        cin >> x >> y;
+        mypair = {x,y};
+        book.push_back(mypair);
     }
-    sort(v.begin(),v.end(), func);
-    for(int i=0; i<v.size(); i++) cout << v[i].first <<" "<< v[i].second << "\n";
 
+    sort(book.begin(), book.end(), func);
+    for(int i=0; i<n; i++){
+        cout << book[i].first << " " << book[i].second << "\n";
+    }
 }
