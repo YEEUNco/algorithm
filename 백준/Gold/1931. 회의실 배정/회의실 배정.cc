@@ -4,10 +4,12 @@
 
 using namespace std;
 
-bool func(pair<int, int>a, pair<int, int> b){
-    if(a.second != b.second)
+bool func(pair<int, int> a, pair<int, int> b ){
+    if(a.second != b.second){
         return a.second < b.second;
+    }
     return a.first < b.first;
+
 }
 
 int main(){
@@ -16,22 +18,26 @@ int main(){
 
     int n;
     cin >> n;
-    vector<pair<int, int>> mt(n);
+
+    vector<pair<int, int>> timeslot(n);
+
     for(int i=0; i<n; i++){
         int s, e;
         cin >> s >> e;
-        mt[i] = {s, e};
-
+        timeslot[i] = {s, e};
     }
 
-    sort(mt.begin(), mt.end(), func);
+    sort(timeslot.begin(), timeslot.end(), func );
+
+    int end_time=0;
     int cnt = 0;
-    int last_end = 0;
-    for(pair<int, int>& p:mt){
-        if(p.first>= last_end){
+    for(int i=0; i<n; i++){
+        if(end_time <= timeslot[i].first){
             cnt++;
-            last_end = p.second;
+            end_time = timeslot[i].second;
         }
     }
-    cout << cnt << "\n";
+
+    cout << cnt;
+    
 }
